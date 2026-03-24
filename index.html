@@ -3,7 +3,6 @@
 <head>
 <style>
   /* 1. THE "NO SCROLLBAR" FIX */
-  /* This kills the inner scrollbar so Docebo's main scrollbar takes over */
   html, body {
     margin: 0;
     padding: 0;
@@ -17,13 +16,11 @@
     font-family: sans-serif; 
     max-width: 1200px; 
     margin: 0 auto;
-    /* Force height to match your Docebo setting to prevent double bars */
     min-height: 5000px; 
     background: white;
   }
 
   /* 3. THE "STICKY" SEARCH BAR */
-  /* This stays at the top of the screen as you scroll down the 5000px page */
   #myInput { 
     position: -webkit-sticky;
     position: sticky; 
@@ -37,18 +34,19 @@
     border-radius: 25px; 
     font-size: 16px; 
     outline: none;
-    box-sizing: border-box; /* Keeps the bar from being wider than the table */
+    box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
-  /* 4. YOUR PERFECT STYLING */
+  /* 4. TABLE STYLING */
   #podcast-section { padding: 20px; text-align: center; }
   #podcast-table-wrap { overflow-x: auto; }
   #podcastTable { width: 100%; border-collapse: collapse; text-align: center; }
   #podcastTable thead tr { border-bottom: 3px solid #0f426b; background: #f8fafc; }
   #podcastTable th { font-weight: bold; color: #0f426b; padding: 15px; }
-  #podcastTable td { color: #0f426b; padding: 12px; border-bottom: 1px solid #dbe4ee; }
+  #podcastTable td { color: #0f426b; padding: 12px; border-bottom: 1px solid #dbe4ee; vertical-align: middle; }
   #podcastTable tbody tr:nth-child(even) { background: #f8fbff; }
+  #podcastTable tbody tr:nth-child(odd) { background: #ffffff; }
   #podcastTable a { text-decoration: none; color: #0f426b; font-weight: bold; }
 </style>
 </head>
@@ -56,7 +54,7 @@
 
 <div id="podcast-container">
   <div id="podcast-section">
-    <h2 style="color:#0f426b;">Podcast Episodes</h2>
+    <h2 style="color:#0f426b;">Podcast Episodes (Alphabetical)</h2>
     
     <input type="text" id="myInput" placeholder="Type to search episodes...">
 
@@ -70,30 +68,6 @@
           </tr>
         </thead>
         <tbody id="myTable">
-          <tr><td><a href="#" target="_blank">Example Episode PODCAST</a></td><td>03/24/2026</td><td>--/--/----</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.getElementById('myInput').addEventListener('keyup', function() {
-    var filter = this.value.toUpperCase();
-    var rows = document.querySelector("#myTable").getElementsByTagName("tr");
-
-    for (var i = 0; i < rows.length; i++) {
-      var titleColumn = rows[i].getElementsByTagName("td")[0];
-      if (titleColumn) {
-        var textValue = titleColumn.textContent || titleColumn.innerText;
-        rows[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-      }
-    }
-  });
-</script>
-
-</body>
-</html>
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8456/2030-graduation-pathway-part-2-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">2030 Graduation Pathway Part 2 PODCAST</a></td><td>03/06/2026</td><td>--/--/----</td></tr>
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8323/2030-graduation-pathways-introduction-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">2030 Graduation Pathways Introduction PODCAST</a></td><td>02/12/2026</td><td>--/--/----</td></tr>
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8458/5th8th-science-test-prep-live-webinar-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">5th/8th Science Test Prep Live Webinar PODCAST</a></td><td>03/06/2026</td><td>--/--/----</td></tr>
@@ -281,29 +255,25 @@
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8348/wida-access-overview-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">WIDA ACCESS Overview 2025–2026 PODCAST</a></td><td>02/23/2026</td><td>--/--/----</td></tr>
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8366/zoom-sso-update-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">Zoom SSO Update PODCAST</a></td><td>02/24/2026</td><td>--/--/----</td></tr>
           <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8397/zoom-workspace-team-chat-function-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">Zoom Workspace: Team Chat Function PODCAST</a></td><td>03/02/2026</td><td>--/--/----</td></tr>
-        </tbody>
+       </tbody>
       </table>
     </div>
   </div>
 
   <script>
     document.getElementById('myInput').addEventListener('keyup', function() {
-      var input = document.getElementById('myInput');
-      var filter = input.value.toUpperCase();
-      var table = document.getElementById('myTable');
-      var tr = table.getElementsByTagName('tr');
+      var filter = this.value.toUpperCase();
+      var rows = document.querySelector("#myTable").getElementsByTagName("tr");
 
-      for (var i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-          var txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
+      for (var i = 0; i < rows.length; i++) {
+        var titleColumn = rows[i].getElementsByTagName("td")[0];
+        if (titleColumn) {
+          var textValue = titleColumn.textContent || titleColumn.innerText;
+          rows[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
         }
       }
     });
   </script>
 </div>
+</body>
+</html>
