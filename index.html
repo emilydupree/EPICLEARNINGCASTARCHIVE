@@ -2,25 +2,26 @@
 <html>
 <head>
 <style>
-  /* 1. THE "NO SCROLLBAR" FIX */
+  /* 1. RE-ENABLE SCROLLING INSIDE THE WINDOW */
   html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    overflow-y: hidden; 
+    overflow-y: auto; /* CHANGED: This allows you to scroll to the bottom */
     background-color: white;
+    height: 100%; /* Ensures the page fills the frame */
   }
 
-  /* 2. MATCH THE DOCEBO HEIGHT */
+  /* 2. ADJUST THE CONTAINER */
   #podcast-container { 
     font-family: sans-serif; 
     max-width: 1200px; 
     margin: 0 auto;
-    min-height: 5000px; 
-    background: white;
+    /* We remove the 5000px height here so the content can flow naturally */
+    min-height: 100%; 
   }
 
-  /* 3. THE "STICKY" SEARCH BAR */
+  /* 3. THE STICKY SEARCH BAR (REALLY IMPORTANT NOW) */
   #myInput { 
     position: -webkit-sticky;
     position: sticky; 
@@ -38,7 +39,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
-  /* 4. TABLE STYLING */
+  /* The rest of your table styling remains the same... */
   #podcast-section { padding: 20px; text-align: center; }
   #podcast-table-wrap { overflow-x: auto; }
   #podcastTable { width: 100%; border-collapse: collapse; text-align: center; }
@@ -46,7 +47,6 @@
   #podcastTable th { font-weight: bold; color: #0f426b; padding: 15px; }
   #podcastTable td { color: #0f426b; padding: 12px; border-bottom: 1px solid #dbe4ee; vertical-align: middle; }
   #podcastTable tbody tr:nth-child(even) { background: #f8fbff; }
-  #podcastTable tbody tr:nth-child(odd) { background: #ffffff; }
   #podcastTable a { text-decoration: none; color: #0f426b; font-weight: bold; }
 </style>
 </head>
