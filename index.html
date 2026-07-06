@@ -27,16 +27,16 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 #podcastTable td { color: #0f426b; padding: 12px; border-bottom: 1px solid #dbe4ee; vertical-align: middle; }
 #podcastTable tbody tr:nth-child(even) { background: #f8fbff; }
 #podcastTable a { text-decoration: none; color: #0f426b; font-weight: bold; }
-</style></head><body><div id=""podcast-container"">
-<div id=""podcast-section"">
-<h2 style=""color:#0f426b;"">Podcast Episodes </h2>
-<input type=""text"" id=""myInput"" placeholder=""Type to search episodes..."">
-<div id=""podcast-table-wrap"">
-<table id=""podcastTable"">
+</style></head><body><div id="podcast-container">
+<div id="podcast-section">
+<h2 style="color:#0f426b;">Podcast Episodes </h2>
+<input type="text" id="myInput" placeholder="Type to search episodes...">
+<div id="podcast-table-wrap">
+<table id="podcastTable">
 <thead><tr><th>PODCAST EPISODE TITLE</th>
 <th>RELEASED DATE</th>
 <th>UPDATES APPLIED</th>
-</tr></thead><tbody id=""myTable"">"
+</tr></thead><tbody id="myTable">
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8453/act-test-prep-live-webinar-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">ACT Test Prep Live Webinar PODCAST</a></td><td>03/06/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8456/2030-graduation-pathway-part-2-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">2030 Graduation Pathway Part 2 PODCAST</a></td><td>03/06/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8323/2030-graduation-pathways-introduction-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">2030 Graduation Pathways Introduction PODCAST</a></td><td>02/12/2026</td><td>--/--/----</td></tr>
@@ -225,11 +225,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8611/working-with-adults-helping-and-partnership-webinar-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">Working with Adults: Helping and Partnership Webinar PODCAST</a></td><td>04/09/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8626/writing-in-math-building-conceptual-understanding-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">Writing in Math: Building Conceptual Understanding PODCAST</a></td><td>04/09/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8634/writing-test-prep-live-5th-8th-webinar-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" target="_blank" rel="noreferrer noopener">Writing Test Prep Live 5th-8th Webinar - PODCAST</a></td><td>04/10/2026</td><td>--/--/----</td></tr>
-"</tbody></table></div></div></div><script>document.getElementById('myInput').addEventListener('keyup', function() {
+</tbody></table></div></div></div><script>document.getElementById('myInput').addEventListener('keyup', function() {
 var filter = this.value.toUpperCase();
-var rows = document.querySelector(""#myTable"").getElementsByTagName(""tr"");
+var rows = document.querySelector("#myTable").getElementsByTagName("tr");
 for (var i = 0; i < rows.length; i++) {
-var titleColumn = rows[i].getElementsByTagName(""td"")[0];
+var titleColumn = rows[i].getElementsByTagName("td")[0];
 if (titleColumn) {var textValue = titleColumn.textContent || titleColumn.innerText;
-rows[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? """" : ""none"";
+rows[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
 }}});</script></body></html>
