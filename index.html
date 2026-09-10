@@ -25,6 +25,10 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 #podcastTable { width: 100%; border-collapse: collapse; text-align: center; }
 #podcastTable thead tr { border-bottom: 3px solid #0f426b; background: #f8fafc; }
 #podcastTable th { font-weight: bold; color: #0f426b; padding: 15px; }
+#releaseDateSort { background: transparent; border: 0; color: #0f426b; font: inherit; font-weight: bold; cursor: pointer; padding: 6px 10px; border-radius: 6px; }
+#releaseDateSort:hover, #releaseDateSort:focus { text-decoration: underline; outline: 2px solid #0f426b; outline-offset: 2px; }
+#releaseDateSort .sort-hint { display: block; font-size: 11px; font-weight: normal; margin-top: 4px; letter-spacing: 0.4px; }
+#sortArrow { display: inline-block; margin-left: 5px; font-size: 16px; }
 #podcastTable td { color: #0f426b; padding: 12px; border-bottom: 1px solid #dbe4ee; vertical-align: middle; }
 #podcastTable tbody tr:nth-child(even) { background: #f8fbff; }
 #podcastTable a { text-decoration: none; color: #0f426b; font-weight: bold; }
@@ -35,7 +39,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 <div id="podcast-table-wrap">
 <table id="podcastTable">
 <thead><tr><th>PODCAST EPISODE TITLE</th>
-<th>RELEASED DATE</th>
+<th aria-sort="none"><button id="releaseDateSort" type="button" title="Sort by released date">RELEASED DATE <span id="sortArrow" aria-hidden="true">↕</span><span class="sort-hint">CLICK TO SORT</span></button></th>
 <th>UPDATES APPLIED</th>
 </tr></thead><tbody id="myTable"><tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8456/2030-graduation-pathway-part-2-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" rel="noreferrer noopener" target="_blank">2030 Graduation Pathway Part 2 PODCAST</a></td><td>03/06/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/8323/2030-graduation-pathways-introduction-podcast?hash=b34e12c68284d68472517aee0fc5af1b04a1d10e&amp;generated_by=13034" rel="noreferrer noopener" target="_blank">2030 Graduation Pathways Introduction PODCAST</a></td><td>02/12/2026</td><td>--/--/----</td></tr>
@@ -268,11 +272,44 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/9563/supplement-my-math-academy-podcast" rel="noreferrer noopener" target="_blank">Supplement: My Math Academy PODCAST</a></td><td>08/27/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/9564/supplement-my-reading-academy-podcast" rel="noreferrer noopener" target="_blank">Supplement: My Reading Academy PODCAST</a></td><td>08/27/2026</td><td>--/--/----</td></tr>
 <tr><td><a href="https://epicuniversity.docebosaas.com/learn/courses/1058/podcast-hosting-course/lessons/9556/epiced-getting-started-webinar-podcast" rel="noreferrer noopener" target="_blank">EpicEd: Getting Started Webinar - PODCAST</a></td><td>08/27/2026</td><td>--/--/----</td></tr>
-</tbody></table></div></div></div><script>document.getElementById('myInput').addEventListener('keyup', function() {
+</tbody></table></div></div></div><script>
+document.getElementById('myInput').addEventListener('keyup', function() {
 var filter = this.value.toUpperCase();
 var rows = document.querySelector("#myTable").getElementsByTagName("tr");
 for (var i = 0; i < rows.length; i++) {
 var titleColumn = rows[i].getElementsByTagName("td")[0];
-if (titleColumn) {var textValue = titleColumn.textContent || titleColumn.innerText;
+if (titleColumn) {
+var textValue = titleColumn.textContent || titleColumn.innerText;
 rows[i].style.display = textValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-}}});</script></body></html>
+}
+}
+});
+
+var sortDirection = 'none';
+document.getElementById('releaseDateSort').addEventListener('click', function() {
+var tbody = document.getElementById('myTable');
+var rows = Array.prototype.slice.call(tbody.getElementsByTagName('tr'));
+var header = this.parentElement;
+var arrow = document.getElementById('sortArrow');
+
+sortDirection = sortDirection === 'desc' ? 'asc' : 'desc';
+
+rows.sort(function(a, b) {
+var aText = a.getElementsByTagName('td')[1].textContent.trim();
+var bText = b.getElementsByTagName('td')[1].textContent.trim();
+var aParts = aText.split('/');
+var bParts = bText.split('/');
+var aDate = new Date(Number(aParts[2]), Number(aParts[0]) - 1, Number(aParts[1]));
+var bDate = new Date(Number(bParts[2]), Number(bParts[0]) - 1, Number(bParts[1]));
+return sortDirection === 'desc' ? bDate - aDate : aDate - bDate;
+});
+
+for (var i = 0; i < rows.length; i++) {
+tbody.appendChild(rows[i]);
+}
+
+header.setAttribute('aria-sort', sortDirection === 'desc' ? 'descending' : 'ascending');
+arrow.textContent = sortDirection === 'desc' ? '▼' : '▲';
+this.querySelector('.sort-hint').textContent = sortDirection === 'desc' ? 'NEWEST TO OLDEST' : 'OLDEST TO NEWEST';
+});
+</script></body></html>
